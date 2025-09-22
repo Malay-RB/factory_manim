@@ -1,0 +1,14 @@
+.vscode/
+
+#virtual env
+.venv/
+
+#confidential
+.env/
+
+#data
+tests/data
+
+#cache
+.pytest_cache/
+__pycache__/

@@ -1,0 +1,12 @@
+{
+  "input": {
+    "type": "local",        
+    "file_type": "csv",    
+    "path": "tests/data",
+    "file": "sample.csv"
+  },
+  "output": {
+    "type": "local",        
+    "path": "output/result_csv.json"
+  }
+}

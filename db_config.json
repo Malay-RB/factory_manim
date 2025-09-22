@@ -1,0 +1,12 @@
+{
+  "input": {
+    "type": "db",
+    "file_type": "db",
+    "table": "scripts"
+  },
+  "output": {
+    "type": "local",
+    "path": "output",
+    "file": "result_db.json"
+  }
+}

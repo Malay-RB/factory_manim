@@ -1,0 +1,20 @@
+{
+    "sequences": [
+        {
+            "id": "1",
+            "script": "Animes"
+        },
+        {
+            "id": "2",
+            "script": "Airlines"
+        },
+        {
+            "id": "3",
+            "script": "Netflix"
+        },
+        {
+            "id": "4",
+            "script": "credit"
+        }
+    ]
+}
