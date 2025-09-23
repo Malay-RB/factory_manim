@@ -1,9 +1,8 @@
-from ..input_handler import LocalFileInputHandler, DatabaseInputHandler, CloudInputHandler
+from src.input_handler import LocalFileInputHandler, DatabaseInputHandler, CloudInputHandler
 
 class InputHandlerFactory:
     @staticmethod
-    def get_handler(source_type: str,):
-        """Directly returns the appropriate InputHandler"""
+    def get_handler(source_type: str):
         match source_type.lower():
             case "local":
                 return LocalFileInputHandler()

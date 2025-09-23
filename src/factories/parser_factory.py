@@ -1,17 +1,16 @@
-from ..parser import JSONParser, CSVParser, TXTParser, DBParser
+from src.parser import JSONParser, CSVParser, TXTParser, DBParser
 
 class ParserFactory:
     @staticmethod
     def get_parser(parser_type: str):
-        """Directly returns the appropriate Parser"""
-        match parser_type.lower():
-            case "json":
-                return JSONParser()
-            case "csv":
-                return CSVParser()
-            case "txt":
-                return TXTParser()
-            case "db":
-                return DBParser()
-            case _:
-                raise ValueError(f"Unsupported parser type: {parser_type}")
+        parser_map = {
+            "json": JSONParser,
+            "csv": CSVParser,
+            "txt": TXTParser,
+            "db": DBParser
+        }
+
+        if parser_type.lower() not in parser_map:
+            raise ValueError(f"Unsupported parser type: {parser_type}")
+
+        return parser_map[parser_type.lower()]()

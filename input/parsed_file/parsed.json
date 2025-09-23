@@ -1,0 +1,19 @@
+{
+    "sequences": [
+        {
+            "script_seq": 1,
+            "script_for_manim": "Show a title card",
+            "script_voice_over": "Welcome to our video!"
+        },
+        {
+            "script_seq": 2,
+            "script_for_manim": "Draw a circle",
+            "script_voice_over": "This is a circle."
+        },
+        {
+            "script_seq": 3,
+            "script_for_manim": "Label the circle",
+            "script_voice_over": "Label it as A."
+        }
+    ]
+}

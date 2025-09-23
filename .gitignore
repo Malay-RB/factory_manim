@@ -8,6 +8,7 @@
 
 #data
 tests/data
+output/
 
 #cache
 .pytest_cache/

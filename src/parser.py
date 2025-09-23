@@ -8,12 +8,10 @@ class Parser(ABC):
 
     @abstractmethod
     def parse(self, raw_data):
-        """Parse raw input data into structured format"""
         pass
 
     @staticmethod
     def validate_raw_data(raw_data):
-        """Utility validation for non-empty input"""
         if raw_data is None or (isinstance(raw_data, str) and not raw_data.strip()):
             raise ValueError("Raw data cannot be empty")
 
@@ -21,9 +19,20 @@ class Parser(ABC):
 class JSONParser(Parser):
     def parse(self, raw_data: str):
         self.validate_raw_data(raw_data)
-        return json.loads(raw_data)
+        data = json.loads(raw_data)
+
+        # If the root is already a list of sequences
+        if isinstance(data, list):
+            return {"sequences": data}
+
+        # If root is a dict with "sequences"
+        if isinstance(data, dict) and "sequences" in data:
+            return data
+
+        raise ValueError("Invalid JSON format. Expected a list of sequences or a dict with 'sequences'.")
 
 
+# Keep other parsers for future use
 class CSVParser(Parser):
     def parse(self, raw_data: str):
         self.validate_raw_data(raw_data)
@@ -34,26 +43,15 @@ class CSVParser(Parser):
 class TXTParser(Parser):
     def parse(self, raw_data: str):
         self.validate_raw_data(raw_data)
-        return {"sequences": [
-            {"id": i+1, "script": line.strip(), "voice_over": line.strip()}
-            for i, line in enumerate(raw_data.splitlines())
-            if line.strip()
-        ]}
+        return {
+            "sequences": [
+                {"id": i + 1, "script": line.strip(), "voice_over": line.strip()}
+                for i, line in enumerate(raw_data.splitlines()) if line.strip()
+            ]
+        }
 
 
 class DBParser(Parser):
     def parse(self, raw_data: list[dict]):
-        """
-        raw_data: list of dicts from DBInputHandler, e.g.:
-        [{"user_id": 1, "name": "Alice", "email": "a@b.com"}, ...]
-        """
         self.validate_raw_data(raw_data)
-
-        sequences = []
-        for row in raw_data:
-            # Map every column dynamically
-            sequence = {k: v for k, v in row.items()}
-            sequences.append(sequence)
-
-        return {"sequences": sequences}
-
+        return {"sequences": raw_data}

@@ -1,12 +1,13 @@
-from ..output_handler import LocalOutputHandler, CloudOutputHandler, DatabaseOutputHandler
+from src.output_handler import LocalOutputHandler, DatabaseOutputHandler, ManimOutputHandler, VideoOutputHandler
 
 class OutputHandlerFactory:
     @staticmethod
     def get_handler(output_config: dict):
         mapping = {
             "local": LocalOutputHandler(),
-            "cloud": CloudOutputHandler(),
-            "db": DatabaseOutputHandler()
+            "db": DatabaseOutputHandler(),
+            "manim": ManimOutputHandler(),
+            "video": VideoOutputHandler(quality=output_config.get("quality", "low"))
         }
         output_type = output_config["type"]
         if output_type not in mapping:

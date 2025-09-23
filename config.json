@@ -1,12 +1,23 @@
 {
   "input": {
-    "type": "local",        
-    "file_type": "csv",    
-    "path": "tests/data",
-    "file": "sample.csv"
+    "type": "local",
+    "file_type": "json",
+    "path": "data",
+    "file": "sample.json"
   },
-  "output": {
-    "type": "local",        
-    "path": "output/result_csv.json"
+  "parsed_copy": {
+    "type": "local",
+    "path": "input/parsed_file",
+    "file": "parsed.json"
+  },
+  "manim_output": {
+    "type": "manim",
+    "base_name": "script_data",
+    "path": "input/manim_files",
+    "regenerate": false
+  },
+  "video_output": {
+    "type": "video",
+    "quality": "low"
   }
 }
